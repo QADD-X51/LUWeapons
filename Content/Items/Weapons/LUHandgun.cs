@@ -16,8 +16,8 @@ namespace LUWeapons.Content.Items.Weapons
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("LU Handgun V1");
-            Tooltip.SetDefault("A weak handgun that can be upgraded.");
+            DisplayName.SetDefault("LU Handgun");
+            Tooltip.SetDefault("A weak handgun that grows stronger as it's used.");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -41,13 +41,13 @@ namespace LUWeapons.Content.Items.Weapons
 
             // Weapon Properties
             Item.DamageType = DamageClass.Ranged; // Sets the damage type to ranged.
-            Item.damage = 10; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
+            Item.damage = 5; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
             Item.knockBack = 1f; // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
             Item.noMelee = true; // So the item's animation doesn't do damage.
             Item.crit = -3;
 
             // Gun Properties
-            Item.shoot = ModContent.ProjectileType<HandgunV1Bullet>(); // For some reason, all the guns in the vanilla source have this.
+            Item.shoot = ModContent.ProjectileType<HandgunBullet>(); // For some reason, all the guns in the vanilla source have this.
             Item.shootSpeed = 6f; // The speed of the projectile (measured in pixels per frame.)
             //Item.useAmmo = AmmoID.Bullet; // The "ammo Id" of the ammo item that this weapon uses. Ammo IDs are magic numbers that usually correspond to the item id of one item that most commonly represent the ammo type.
         }
@@ -73,12 +73,12 @@ namespace LUWeapons.Content.Items.Weapons
 
         public override void UpdateInventory(Player player)
         {
-            int level = player.GetModPlayer<WeaponExperience>().handgunV1LVL;
+            int level = player.GetModPlayer<HandgunExperience>().LVL;
             float bonus = (float)Math.Log(level, 10);
 
             Item.useTime = 28 - (int)(7f * bonus); // The item's use time in ticks (60 ticks == 1 second.)
             Item.useAnimation = 28 - (int)(7f * bonus); // The length of the item's use animation in ticks (60 ticks == 1 second.)
-            Item.damage = 10 + (int)(10f * bonus); // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
+            Item.damage = 5 + (int)(15f * bonus); // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
             Item.knockBack = 1f + (1f * bonus); // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
             Item.crit = -3 + (int)(10f * bonus);
             Item.shootSpeed = 6f + (3f * bonus); // The speed of the projectile (measured in pixels per frame.)

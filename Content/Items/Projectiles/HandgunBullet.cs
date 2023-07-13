@@ -10,7 +10,7 @@ using LUWeapons.Common.Player;
 
 namespace LUWeapons.Content.Items.Projectiles
 {
-	public class HandgunV1Bullet : ModProjectile
+	public class HandgunBullet : ModProjectile
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Handgun V1 Bullet"); // The English name of the projectile
@@ -44,10 +44,10 @@ namespace LUWeapons.Content.Items.Projectiles
 
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			var player = Main.player[Projectile.owner].GetModPlayer<WeaponExperience>();
-			player.GiveEXP(damage, WeaponExperienceType.HandgunV1);
-			Main.player[Projectile.owner].ManaEffect(player.handgunV1MaxEXP - player.handgunV1EXP);
-            Main.player[Projectile.owner].HealEffect(player.handgunV1LVL);
+			var player = Main.player[Projectile.owner].GetModPlayer<HandgunExperience>();
+			player.GiveEXP(damage);
+			Main.player[Projectile.owner].ManaEffect(player.MaxEXP - player.EXP);
+            Main.player[Projectile.owner].HealEffect(player.LVL);
         }
 
 		public override bool PreDraw(ref Color lightColor) {
