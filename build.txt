@@ -1,0 +1,3 @@
+displayName = Level-Up Weapons
+author = Q.A.D.D.
+version = 0.1
