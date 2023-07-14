@@ -74,14 +74,14 @@ namespace LUWeapons.Content.Items.Weapons
         public override void UpdateInventory(Player player)
         {
             int level = player.GetModPlayer<HandgunExperience>().LVL;
-            float bonus = (float)Math.Log(level, 10);
+            float bonus = (float)Math.Log(level, 30);
 
-            Item.useTime = 28 - (int)(7f * bonus); // The item's use time in ticks (60 ticks == 1 second.)
-            Item.useAnimation = 28 - (int)(7f * bonus); // The length of the item's use animation in ticks (60 ticks == 1 second.)
-            Item.damage = 5 + (int)(15f * bonus); // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
-            Item.knockBack = 1f + (1f * bonus); // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
-            Item.crit = -3 + (int)(10f * bonus);
-            Item.shootSpeed = 6f + (3f * bonus); // The speed of the projectile (measured in pixels per frame.)
+            Item.useTime = 28 - (int)(14f * bonus); // The item's use time in ticks (60 ticks == 1 second.)
+            Item.useAnimation = 28 - (int)(14f * bonus); // The length of the item's use animation in ticks (60 ticks == 1 second.)
+            Item.damage = 5 + (int)(35f * bonus); // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
+            Item.knockBack = 1f + (3f * bonus); // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
+            Item.crit = -3 + (int)(24f * bonus);
+            Item.shootSpeed = 6f + (6f * bonus); // The speed of the projectile (measured in pixels per frame.)
         }
 
     }
